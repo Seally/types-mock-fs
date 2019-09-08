@@ -1,0 +1,30 @@
+{
+  "name": "@types/mock-fs",
+  "version": "4.10.0",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+      "types/**/*.d.ts"
+  ],
+  "scripts": {
+    "format": "prettier --write **/*.ts",
+    "lint": "dtslint types mock-fs",
+    "test": "mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^4.2.1",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.4",
+    "chai": "^4.2.0",
+    "dts-gen": "^0.5.8",
+    "dtslint": "^0.9.6",
+    "mocha": "^6.2.0",
+    "mock-fs": "^4.10.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.2"
+  },
+  "types": "./types/mock-fs/index.d.ts"
+}

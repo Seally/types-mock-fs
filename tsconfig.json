@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "moduleResolution": "node",
+        "paths": {
+            "mock-fs": [ "types/mock-fs" ],
+            "mock-fs/*": [ "types/mock-fs/*" ],
+            "*": [ "node_modules/*" ]
+        },
+        "strict": true
+    }
+}
