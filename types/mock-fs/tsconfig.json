@@ -18,7 +18,7 @@
     },
     "files": [
         "index.d.ts",
-        "check-mock-fs.ts",
+        "mock-fs-tests.ts",
         "lib/directory.d.ts",
         "lib/file.d.ts",
         "lib/filesystem.d.ts",

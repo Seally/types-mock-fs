@@ -15,13 +15,6 @@ mock({});
 mock({
     'path/to/fake/dir': {
         'some-file.txt': 'file content here',
-        'some-other-file.txt': mock.file({
-            content: 'apricot banana guava',
-            mode: 0o766,
-        }),
-        'my-file.txt': mock.symlink({
-            path: './some-file.txt',
-        }),
         'empty-dir': {
             /** empty directory */
         },
@@ -30,16 +23,97 @@ mock({
     'some/other/path': {
         /** another empty directory */
     },
-    // tslint:disable-next-line: object-literal-key-quotes
-    dir: mock.directory({
+});
+
+mock({
+    'path/to/file.txt': 'file content here',
+});
+
+mock({
+    foo: mock.file({
+        content: 'file content here',
+        ctime: new Date(1),
+        mtime: new Date(1),
+    }),
+});
+
+// note that this could also be written as
+// mock({'path/to/dir': { /** config */ }})
+mock({
+    path: {
+        to: {
+            dir: {
+                file1: 'text content',
+                file2: Buffer.from([1, 2, 3, 4]),
+            },
+        },
+    },
+});
+
+mock({
+    'some/dir': mock.directory({
+        mode: parseInt('0755', 8),
         items: {
-            'diary.txt': mock.symlink({
-                path: 'diary-2019.txt',
-            }),
-            'diary-2019.txt': 'Sunny Day in April',
+            file1: 'file one content',
+            file2: Buffer.from([8, 6, 7, 5, 3, 0, 9]),
         },
     }),
 });
+
+mock({
+    'some/dir': {
+        'regular-file': 'file contents',
+        'a-symlink': mock.symlink({
+            path: 'regular-file',
+        }),
+    },
+});
+
+mock(
+    {
+        'path/to/file.txt': 'file content here',
+    },
+    {
+        createTmp: true,
+        createCwd: false,
+    },
+);
+
+// Combined case to check nesting.
+mock(
+    {
+        'path/to/fake/dir': {
+            'some-file.txt': 'file content here',
+            'some-other-file.txt': mock.file({
+                content: 'apricot banana guava',
+                mode: 0o766,
+            }),
+            'my-file.txt': mock.symlink({
+                path: './some-file.txt',
+            }),
+            'empty-dir': {
+                /** empty directory */
+            },
+        },
+        'path/to/some.png': Buffer.from([8, 6, 7, 5, 3, 0, 9]),
+        'some/other/path': {
+            /** another empty directory */
+        },
+        dir: mock.directory({
+            mode: parseInt('0755', 8),
+            items: {
+                'diary.txt': mock.symlink({
+                    path: 'diary-2019.txt',
+                }),
+                'diary-2019.txt': 'Sunny Day in April',
+            },
+        }),
+    },
+    {
+        createTmp: true,
+        createCwd: false,
+    },
+);
 
 // $ExpectType string[]
 FileSystem.getPathParts('path/to/some/file.txt');

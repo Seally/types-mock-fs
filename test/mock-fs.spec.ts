@@ -15,7 +15,7 @@ afterEach(mock.restore);
 
 describe('Smoke Tests', () => {
     it('check-mock-fs.ts should run without errors', () => {
-        require('../types/mock-fs/check-mock-fs');
+        require('../types/mock-fs/mock-fs-tests');
     });
 
     describe('index', () => {
